@@ -4,32 +4,33 @@ CREATE DATABASE employees;
 USE employees;
 
 
--- create department key
+-- Department table
 Create Table department (
-    id: INT AUTO_INCREMENT PRIMARY KEY,
-    name: VARCHAR(30),
+    id: INT AUTO_INCREMENT, 
+    PRIMARY KEY (id),
+    name: VARCHAR(30) NOT NULL
 );
 
 
---create roll table
-Create Table role (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+--Roles table
+Create Table roles (
+    id INT AUTO_INCREMENT,
+     PRIMARY KEY (id),
     title VARCHAR(30) NOT NULL,
     salary DECIMAL NOT NULL,
     department_id INT NOT NULL,
-    FOREIGN KEY (department_id) 
-    REFERENCES department(id) 
-    ON DELETE CASCADE
+    FOREIGN KEY (department_id) REFERENCES department(id)   
 );
 
--- Create Employee table
+-- Employee table
 Create Table employee (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT,
+     PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
-    last_name UNIQUE NOT NULL,
-    FOREIGN KEY role_id,
-    REFERENCES manager_id INT NOT NULL,
-     (roll_id) 
-    ON DELETE SET NULL
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT
+    FOREIGN KEY (roll_id) REFERENCES role(id),
+    manager_id INT REFERENCES id   
 );
 
