@@ -1,7 +1,6 @@
--- Drop DB if exists and recreate clean version and use it.
-DROP DATABASE IF EXISTS employees;
-CREATE DATABASE employees;
-USE employees;
+DROP DATABASE IF EXISTS employee_DB;
+CREATE DATABASE employees_DB;
+USE employees_DB;
 
 
 -- Department table
@@ -10,10 +9,8 @@ CREATE Table department (
     PRIMARY KEY (id),
     name: VARCHAR(30) NOT NULL
 );
-
-
---Roles table
-CREATE Table roles (
+--Role table
+CREATE Table role (
     id INT AUTO_INCREMENT,
      PRIMARY KEY (id),
     title VARCHAR(30) NOT NULL,
