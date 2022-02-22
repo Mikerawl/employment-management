@@ -5,7 +5,7 @@ USE employees;
 
 
 -- Department table
-Create Table department (
+CREATE Table department (
     id: INT AUTO_INCREMENT, 
     PRIMARY KEY (id),
     name: VARCHAR(30) NOT NULL
@@ -13,7 +13,7 @@ Create Table department (
 
 
 --Roles table
-Create Table roles (
+CREATE Table roles (
     id INT AUTO_INCREMENT,
      PRIMARY KEY (id),
     title VARCHAR(30) NOT NULL,
@@ -23,14 +23,14 @@ Create Table roles (
 );
 
 -- Employee table
-Create Table employee (
+CREATE Table employee (
     id INT AUTO_INCREMENT,
      PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT
-    FOREIGN KEY (roll_id) REFERENCES role(id),
+    FOREIGN KEY (role_id) REFERENCES role(id),
     manager_id INT REFERENCES id   
 );
 
