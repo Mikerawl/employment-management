@@ -2,27 +2,22 @@
 SELECT * FROM department;
 -- insert data into department table
 INSERT INTO department (name)
-VALUES ('IT'), ('Finance'), ('Labor');
+VALUES ('Boss'), ('Finance'), ('Labor');
 
 SELECT * FROM role;
--- insert data into role table
+-- insert  role 
 INSERT INTO role (title, salary, department_id)
-VALUES
-    ('Lead', 150000, 1), ('Developer', 100000, 2),
-    ('Laborer', 50000, 3), 
-
-
--- insert data into employee table
+VALUES('Lead', 0, 1), ('Developer', 100000, 2), ('Laborer', 50000, 3), 
 SELECT
     CONCAT(first_name, ' ', last_name) AS 'name'
     FROM employee;
-
 SELECT * FROM employee;
 
-INSERT INTO employee
-    (first_name, last_name, role_id, manager_id)
-VALUES
-    ('Debbie', 'Harry', 1, NULL), ('Dan', 'Steely', 2, 1), ('Billy', 'Idol', 3, NULL),
+
+INSERT INTO employee (first_name, last_name, role_id)
+VALUES('Debbie', 'Harry', 1,)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES ('Dan', 'Steely', 2, 1), ('Billy', 'Idol', 3, 1),
     
 
 -- view the departments 
@@ -64,10 +59,10 @@ SELECT
     INNER JOIN employee ON role.id = employee.role_id
     WHERE manager_id = 1;
 
-    -- view employee id by id.
+    -- view by employee id.
     SELECT id
         FROM employee
-        WHERE id -1
+        WHERE id = 1;
     -- view employee with departmetn and mangager
     SELECT
         c1.id As 'ID',
@@ -90,7 +85,7 @@ SELECT
         SELECT * FROM role;
         DELETE FROM role WHERE ID =7;
 
-        -- View employee by department, manager
+        -- View employee by department and manager
         SELECT
         c1.id AS 'ID',
 	    c1.first_name AS 'First Name',
@@ -101,21 +96,21 @@ SELECT
         CONCAT(c2.first_name, ' '). c2 last_name) AS 'Manager',
         FROM department
         INNER JOIN role ON department.id = role.department_id
-        INNER JOIN employee c1 ON role.id = c1.role_id
+        LEFT JOIN employee c1 ON role.id = c1.role_id
         LEFT JOIN employee c2 ON c1.manager_id = c2.id
-        WHERE department.id =2
+        WHERE department.id = 2
 
        
         SELECT SUM(role.salary) FROM role;
-        -- department budget
+        -- budget
         SELECT
             department.name
             SUM(role.salary) AS 'Department Budget'
         FROM department
         INNER JOIN role ON department.id = role.department_id
-        INNER JOIN employee c1 ON role.id = c1.role_id
+        LEFT JOIN employee c1 ON role.id = c1.role_id
         LEFT JOIN employee c2 ON c1.manager_id = c2.id;
-        GROUP BY department.id
+        GROUP BY department.id;
 
         SELECT
             SUM(role.salary)
@@ -139,5 +134,5 @@ SELECT
 
     SELECT id, title FROM role;
     SELECT id,
-    CONCAT(first_name, ' ', last_name) AS 'name'
-    FROM employee;
+        CONCAT(first_name, ' ', last_name) AS 'name'
+        FROM employee;
